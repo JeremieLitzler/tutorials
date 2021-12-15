@@ -1,5 +1,9 @@
 # Menu scroll hide and show
 
+## The finished app
+
+Demo the app.
+
 ## The HTML
 
 - a `header` with a wrapper to allow a full width on the viewport of the header element while the wrapper is a contained in the same width as `main` and `footer` .
