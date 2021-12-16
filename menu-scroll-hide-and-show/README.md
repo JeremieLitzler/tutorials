@@ -9,17 +9,16 @@
 ## The CSS
 
 - the common style and the usual responsive styles which I won't talk about here.
-- from line 34, we have the stuff that we are interested in, e.g. the menu and child elements styles:
+- from line 34, we have the stuff that we are interested in, e.g., the menu and child elements styles:
   - first,
     - the `header` element is taking 100% of the width
     - its position is fixed. It is essential to allow the scroll effect to work later on.
-    - why? because the effect is simply to hide or show the menu on the scroll event. If it is relative or absolute, it won't work because the element doesn't follow the scroll.
+    - why? Because the effect is simply to hide or show the menu on the scroll event. If it is relative or absolute, it won't work because the element doesn't follow the scroll.
     - to finish for a fancy effect, I use ease effect, nothing special here.
   - then the responsive styles for the menu elements, a simple flex example.
   - finally, regarding that menu, we find the show and hide styles
-    - the `opacity` is only used for the disappearing effect as the transition execute.
-    - the `margin-top` is the tool we'll use put off or on screen the menu depending on the scroll direction. scrolling down will `hide-header` and scroll up will `show-header`.
-- to finish a lit
+    - the `opacity` is only used for the disappearing effect as the transition executes.
+    - the `margin-top` is the tool we'll use put off or on screen the menu depending on the scroll direction. Scrolling down will `hide-header` and scrolling up will `show-header`.
 
 ## The JavaScript
 
@@ -48,7 +47,7 @@ window.addEventListener('scroll', function (event) {
 });
 ```
 
-What does the log tells us? that we scrolled. OK, that's not helpful.
+What does the log tell us? That we scrolled. OK, that's not helpful.
 
 How can we find the distance scrolled?
 
@@ -60,9 +59,9 @@ const scrollDistance = function () {
 };
 ```
 
-OK, so we see in the properties containing the word `scroll` a few things. If we ask the question _how do we detect when we are scrolling down_, ask also _what does down mean_?
+OK, so we see in the properties containing the word `scroll` a few things. If we ask the question _how do we detect when we are scrolling down_, also ask _what does down mean_?
 
-It means scrolling on the Y axis where down scrolling is going from 0 to X, where X is the offset between the top (0) and where you are.
+It means scrolling on the Y-axis where down scrolling is going from 0 to X, where X is the offset between the top (0) and where you are.
 
 So in the properties, `scrollY` seems to be a good pick.
 
@@ -70,7 +69,7 @@ So in the properties, `scrollY` seems to be a good pick.
 console.log(window.scrollY);
 ```
 
-As you scroll down, you see that value increasing.
+As you scroll down, you see that value is increasing.
 As you scroll up, the value decreases because we are going back to the top.
 
 OK, we have our value.
@@ -120,7 +119,7 @@ Let's run it:
 
 Oh! Do you see what's happening? `start` doesn't change, therefore the `distance` scrolled down on the first scroll may be correct but not the second.
 
-Why? Because, we are not resetting `start` on the new scroll event.
+Why? Because we are not resetting `start` on the new scroll event.
 
 So we need to save when we are scrolling and we need to measure the distance when the scrolling is done.
 
@@ -131,7 +130,7 @@ Let's add a variable:
 Then we will use a `setTimeout` to delay the reading of the `end` value.
 
 Why?
-Because, the scroll event is fired continuously and we don't need to do something with all the events.
+Because the scroll event is fired continuously and we don't need to do something with all the events.
 We need the last event.
 
 ```javascript
@@ -146,11 +145,11 @@ console.log('launched timeout');
 
 We see that there is a lot of scroll events, depending on how much you scroll.
 
-However, our distnace is still the original start value minus the end value of the latest scroll.
+However, our distance is still the original start value minus the end value of the latest scroll.
 
 If I repeat, from the top, the same scroll-stop-scroll-stop, I want the distance to be 100 on the second stop.
 
-To do so, let's the last event by cancelling all timeouts but the last one:
+To do so, let's the last event by canceling all timeouts but the last one:
 
 ```javascript
 window.clearTimeout(isScrolling);
@@ -226,7 +225,7 @@ isScrolling = setTimeout(function () {
 
 ```javascript
 scrollDistance(function (distance) {
-  console.log(`You travelled ${distance} px`);
+  console.log(`You traveled ${distance} px`);
 });
 ```
 
@@ -256,7 +255,7 @@ if (distance > 0) {
 }
 ```
 
-Let's run the scroll sequence once more: OK, it is working but the timeout value needs to be lowered to be smoother. Let's try setting it 50ms.
+Let's run the scroll sequence once more: OK, it is working but the timeout value needs to be lowered to be smoother. Let's try setting it 50 ms.
 
 ## Conclusion
 
@@ -266,8 +265,8 @@ I hope you learned a lot in this tutorial and that you were able to code along.
 
 The principles we saw were:
 
-- detection of scrolling down and up.
-- calculation of the scrolling distance using `setTimeout`.
+- detecting scrolling down and up.
+- calculating the scrolling distance using `setTimeout`.
 - implementing the scrollDistance function with a callback function.
 
 Give a thumb up if you liked it, 2 thumbs down otherwise!
@@ -276,4 +275,4 @@ Let's me know in the comments if you have any questions. See you later for anoth
 
 Credits to [Chris Ferdinandi](https://gomakethings.com) who showed me this trick and help me understand all these principles.
 
-Checkout his website and subscribe to his newsletter. His tips don't end with this one.
+Check out his website and subscribe to his newsletter. His tips don't end with this one.
